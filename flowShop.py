@@ -23,18 +23,26 @@ class Flowshop:
                 U.append(self.jobs[i])
             else:
                 V.append(self.jobs[i])
-        print("U = ", U, " V = ", V)
 
         U = self.tri_insertion(U)
-        V = self.tri_insertion(V)
-        print("U = ", U, " V = ", V)
-        return U, V
+        V = self.tri_insertionDec(V)
+        return U + V
 
     def tri_insertion(self, tab):
         for i in range(len(tab)):
             temp = tab[i]
             j = i
             while j > 0 and tab[j - 1] > temp:
+                tab[j] = tab[j - 1]
+                j = j - 1
+            tab[j] = temp
+        return tab
+
+    def tri_insertionDec(self, tab):
+        for i in range(len(tab)):
+            temp = tab[i]
+            j = i
+            while j > 0 and tab[j - 1][1] < temp[1]:
                 tab[j] = tab[j - 1]
                 j = j - 1
             tab[j] = temp

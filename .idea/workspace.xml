@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="Initialisation et début tri">
+    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="tri insertion début">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mainm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mainm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flowShop.py" beforeDir="false" afterPath="$PROJECT_DIR$/flowShop.py" afterDir="false" />
@@ -110,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648668071529</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="tri insertion début">
+      <created>1648669755222</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1648669755222</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,6 +133,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initialisation et début tri" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialisation et début tri" />
+    <MESSAGE value="tri insertion début" />
+    <option name="LAST_COMMIT_MESSAGE" value="tri insertion début" />
   </component>
 </project>

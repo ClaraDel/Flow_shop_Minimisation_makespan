@@ -5,7 +5,8 @@ def main():
     flowshop = Flowshop()
     flowshop.randFlowshop()
     flowshop.printJobs()
-    U, V = flowshop.triSep()
+    jobOrder = flowshop.triSep()
+    print(jobOrder)
     return 0
 
 main()
