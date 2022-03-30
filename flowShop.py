@@ -48,6 +48,15 @@ class Flowshop:
             tab[j] = temp
         return tab
 
+    def reductionPb(self):
+        if self.nb_machines > 2:
+            for i in range(self.nb_jobs):
+                print("avant : ", self.jobs[i])
+                for j in range(2, self.nb_machines):
+                    self.jobs[i][1] = self.jobs[i][1] + self.jobs[i][2]
+                del self.jobs[i][2:]
+                print("après : ", self.jobs[i])
+
     # def minTime(jobs):
     #     min = 666
     #     for j in range(0, jobs.length - 1):
