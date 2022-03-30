@@ -1,8 +1,11 @@
+import flowShop
+
 def main():
-    """ Main program """
-    # Code goes over here.
+
+    flowshop = flowShop.Flowshop()
+    flowshop.randFlowshop()
+    flowshop.printJobs()
+
     return 0
 
-if __name__ == "__main__":
-    print("coucou");
-    main()
+main()
