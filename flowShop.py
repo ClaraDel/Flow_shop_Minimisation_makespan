@@ -9,21 +9,44 @@ class Flowshop:
         print(self.nb_jobs, self.nb_machines)
 
     def randFlowshop(self):
-        jobs = [[random.randrange(1, 20) for _ in range(self.nb_jobs)] for _ in range(self.nb_machines)]
+        jobs = [[random.randrange(1, 20) for _ in range(self.nb_machines)] for _ in range(self.nb_jobs)]
         return jobs
 
     def printJobs(self):
         print(self.jobs)
 
- #   def separation(jobs):
+    def triSep(self):
+        U = []
+        V = []
+        for i in range(self.nb_jobs):
+            if self.jobs[i][0] < self.jobs[i][1]:
+                U.append(self.jobs[i])
+            else:
+                V.append(self.jobs[i])
+        print("U = ", U, " V = ", V)
 
-    def minTime(jobs):
-        min = 666
-        for j in range(0, jobs.length - 1):
-            if jobs(j)[0] < min:
-                min = jobs(j)
-            if jobs(j)(1) < min:
-                min = jobs(j)(1)
+        U = self.tri_insertion(U)
+        V = self.tri_insertion(V)
+        print("U = ", U, " V = ", V)
+        return U, V
+
+    def tri_insertion(self, tab):
+        for i in range(len(tab)):
+            temp = tab[i]
+            j = i
+            while j > 0 and tab[j - 1] > temp:
+                tab[j] = tab[j - 1]
+                j = j - 1
+            tab[j] = temp
+        return tab
+
+    # def minTime(jobs):
+    #     min = 666
+    #     for j in range(0, jobs.length - 1):
+    #         if jobs(j)[0] < min:
+    #             min = jobs(j)
+    #         if jobs(j)(1) < min:
+    #             min = jobs(j)(1)
 
     # def johnson_flowshop(jobs):
     #     r = []
