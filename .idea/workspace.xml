@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="Algorithme de Johnson pour deux machines terminé">
+    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="Ajout addition de termes pour réduire le problème à un problème à deux machines">
+      <change beforePath="$PROJECT_DIR$/.idea/Flow_shop_Minimisation_makespan.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Flow_shop_Minimisation_makespan.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mainm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mainm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flowShop.py" beforeDir="false" afterPath="$PROJECT_DIR$/flowShop.py" afterDir="false" />
@@ -129,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648674913335</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Ajout addition de termes pour réduire le problème à un problème à deux machines">
+      <created>1648677792039</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1648677792039</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,6 +156,7 @@
     <MESSAGE value="Initialisation et début tri" />
     <MESSAGE value="tri insertion début" />
     <MESSAGE value="Algorithme de Johnson pour deux machines terminé" />
-    <option name="LAST_COMMIT_MESSAGE" value="Algorithme de Johnson pour deux machines terminé" />
+    <MESSAGE value="Ajout addition de termes pour réduire le problème à un problème à deux machines" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout addition de termes pour réduire le problème à un problème à deux machines" />
   </component>
 </project>

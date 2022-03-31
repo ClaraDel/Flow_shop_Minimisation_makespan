@@ -2,12 +2,11 @@ from flowShop import *
 
 def main():
 
-    flowshop = Flowshop(nb_machines=3)
+    flowshop = Flowshop(nb_machines=4)
     flowshop.randFlowshop()
-    flowshop.reductionPb()
-    flowshop.printJobs()
-    jobOrder = flowshop.triSep()
-    print(jobOrder)
+    jobOrder = flowshop.reductionPb()
+    flowshop.BandB(2)
+    # printJobOrder(jobOrder)
     return 0
 
 main()
