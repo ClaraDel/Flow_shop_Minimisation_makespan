@@ -49,7 +49,6 @@ class Flowshop:
                 print("Makespan de la solution avec k =", k, ":", self.makespans[-1])
             [makespanMin, indiceMin] = self.getMinMakespan()
             self.printSolution(indiceMin, makespanMin)
-            return 0
 
     def getMinMakespan(self):
         temp = self.makespans[0]
@@ -62,7 +61,6 @@ class Flowshop:
 
     def printSolution(self, indiceMin, makespanMin):
         print("La meilleur solution retenue est l'ordre avec k =", indiceMin + 1, "avec un makesman =", makespanMin)
-
 
     def triSepReduction(self, jobs):
         U = []
@@ -121,4 +119,31 @@ class Flowshop:
         for i in range(len(tab)):
             print("Tâche n°", tab[i][0], self.jobs[tab[i][0]][1:])
 
-    # def triDynamique(self):
+    def triDynamique(self):
+
+
+    def iterTriDynamique(self):
+        order = []
+        compList = [[0]]
+        for j in range(self.nb_jobs - 1):
+            abc = self.makespan((self.jobs(j),self.jobs(j + 1)), self.nb_machines - 1, 2)
+            cba = self.makespan((self.jobs(j + 1),self.jobs(j)), self.nb_machines - 1, 2)
+            if abc > cba:
+                compList[0].append(j + 1)
+                # call self.calcVirtualTemp
+            else:
+                temp = [j + 1].append(compList[0])
+                compList[0] = temp
+                # call self.calcVirtualTemp
+
+
+    def calcVirtualTemp(self, tab, virt, k, i):
+        b = tab[k][i - 1]
+        for m in range(k - 1):
+            a = a + tab[m][i]
+            b = b + tab[m][i - 1]
+        if tab[k][i] + a > b:
+            virt[i] = tab[k + 1][i] + a + tab[k][i] - b
+        else:
+            virt[i] = tab[k][i]
+        return virt
