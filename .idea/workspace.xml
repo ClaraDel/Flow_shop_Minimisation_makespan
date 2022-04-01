@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="Ajout addition de termes pour réduire le problème à un problème à deux machines">
-      <change beforePath="$PROJECT_DIR$/.idea/Flow_shop_Minimisation_makespan.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Flow_shop_Minimisation_makespan.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="Début méthode BB approchée (selon l'article)">
+      <change afterPath="$PROJECT_DIR$/calculMakespan.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mainm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mainm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flowShop.py" beforeDir="false" afterPath="$PROJECT_DIR$/flowShop.py" afterDir="false" />
@@ -40,7 +39,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="277FMNIoB2Vh3LAtH2i6NaN1R0U" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -138,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648677792039</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Début méthode BB approchée (selon l'article)">
+      <created>1648766869612</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1648766869612</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,6 +165,7 @@
     <MESSAGE value="tri insertion début" />
     <MESSAGE value="Algorithme de Johnson pour deux machines terminé" />
     <MESSAGE value="Ajout addition de termes pour réduire le problème à un problème à deux machines" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout addition de termes pour réduire le problème à un problème à deux machines" />
+    <MESSAGE value="Début méthode BB approchée (selon l'article)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Début méthode BB approchée (selon l'article)" />
   </component>
 </project>
