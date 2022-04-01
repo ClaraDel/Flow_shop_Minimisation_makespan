@@ -103,18 +103,21 @@ class Flowshop:
         print("Ordre des tâches :")
         for i in range(len(tab)):
             print("Tâche n°", tab[i][0], self.jobs[tab[i][0]][1:])
-
-    def triDynamique(self):
-
-    def makespan2Machines(self, tab, i, m):
-        if i == 0 and m == 1:
-            t = tab[0][1]
-        elif i == 0:
-            for j in range(self.nb_machines):
-                t = t + tab[0][m - j]
-        elif m == 1:
-            t = tab[]
-        return t
+    #
+    # def triDynamique(self):
+    #
+    #
+    # def makespan2Jobs(self, tab, i, m):
+    #     if i == 0 and m == 1:
+    #         t = tab[0][1]
+    #     elif i == 0:
+    #         for j in range(self.nb_machines):
+    #             t = t + tab[0][m - j]
+    #     elif m == 1:
+    #         t = tab[1][1] + tab[0][1]
+    #     else:
+    #         t = tab[1][m] + max(self.makespan2Jobs(tab, i - 1, m), self.makespan2Jobs(tab, i, m - 1))
+    #     return t
     # def makespanIter():
 
             # for i in range(self.nb_jobs):
