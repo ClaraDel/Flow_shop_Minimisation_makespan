@@ -2,7 +2,7 @@ from flowShop import *
 
 def main():
 
-    flowshop = Flowshop(nb_machines=4, nb_jobs=4)
+    flowshop = Flowshop(nb_machines=5, nb_jobs=5)
     flowshop.randFlowshop()
     flowshop.printJobs()
     jobOrder = flowshop.reductionPb()
