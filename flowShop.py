@@ -41,7 +41,7 @@ class Flowshop:
                     lList = self.jobs[i][k + 1:].copy()
                     jobsSum.append([self.jobs[i][0], sum(fList), sum(lList)])
                     self.triSepReduction(jobs=jobsSum)
-                printJobOrder(self.triSepReduction(jobsSum))
+                self.printJobOrder(self.triSepReduction(jobsSum))
                 print(self.makespan(self.nb_machines-1, self.nb_jobs))
             return 0
 
@@ -88,6 +88,7 @@ class Flowshop:
             return self.triSep()
 
     def makespan(self, i, m):
+        # self.jobs[tab[i][0]][1:]
         if i == 0 and m == 1:
             t = self.jobs[0][1]
         elif i == 0:
@@ -98,6 +99,22 @@ class Flowshop:
             t = self.jobs[i][m] + max(self.makespan(i - 1, m), self.makespan(i, m - 1))
         return t
 
+    def printJobOrder(self, tab):
+        print("Ordre des tâches :")
+        for i in range(len(tab)):
+            print("Tâche n°", tab[i][0], self.jobs[tab[i][0]][1:])
+
+    def triDynamique(self):
+
+    def makespan2Machines(self, tab, i, m):
+        if i == 0 and m == 1:
+            t = tab[0][1]
+        elif i == 0:
+            for j in range(self.nb_machines):
+                t = t + tab[0][m - j]
+        elif m == 1:
+            t = tab[]
+        return t
     # def makespanIter():
 
             # for i in range(self.nb_jobs):
@@ -125,8 +142,3 @@ class Flowshop:
     #             else:
     #
     #     return r
-
-def printJobOrder(tab):
-    print("Ordre des tâches :")
-    for i in range(len(tab)):
-        print("Tâche n°", tab[i][0], tab[i][1:])

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="Début méthode BB approchée (selon l'article)">
-      <change afterPath="$PROJECT_DIR$/calculMakespan.py" afterDir="false" />
+    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="Calcul makespan et début réorganisation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mainm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mainm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flowShop.py" beforeDir="false" afterPath="$PROJECT_DIR$/flowShop.py" afterDir="false" />
@@ -146,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648766869612</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Calcul makespan et début réorganisation">
+      <created>1648778439257</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1648778439257</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,6 +172,7 @@
     <MESSAGE value="Algorithme de Johnson pour deux machines terminé" />
     <MESSAGE value="Ajout addition de termes pour réduire le problème à un problème à deux machines" />
     <MESSAGE value="Début méthode BB approchée (selon l'article)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Début méthode BB approchée (selon l'article)" />
+    <MESSAGE value="Calcul makespan et début réorganisation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Calcul makespan et début réorganisation" />
   </component>
 </project>
