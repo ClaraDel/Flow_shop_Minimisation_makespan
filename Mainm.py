@@ -7,6 +7,7 @@ def main():
     flowshop.printJobs()
     jobOrder = flowshop.reductionPb()
     flowshop.BandB()
+    flowshop.methExa()
     return 0
 
 main()

@@ -119,7 +119,16 @@ class Flowshop:
         for i in range(len(tab)):
             print("Tâche n°", tab[i][0], self.jobs[tab[i][0]][1:])
 
-    def triDynamique(self):
+    def methExa(self):
+        tab = []
+        for i in range(self.nb_jobs):
+            f = 0
+            for j in range(self.nb_machines):
+                f = f + (self.nb_machines - 2*j + 1)*self.jobs[i][j + 1]
+            tab.append(f)
+            print(f)
+
+    # def triDynamique(self):
 
 
     def iterTriDynamique(self):

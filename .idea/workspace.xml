@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="renvoie les solutions pour tous les k et identifie le meilleur makespan">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="Début tri dynamique,">
+      <change beforePath="$PROJECT_DIR$/Mainm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mainm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flowShop.py" beforeDir="false" afterPath="$PROJECT_DIR$/flowShop.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648847534842</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Début tri dynamique,">
+      <created>1648851668219</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1648851668219</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,6 +203,7 @@
     <MESSAGE value="Calcul makespan et début prog dynamique" />
     <MESSAGE value="commit fonctionnel sans triDynamique" />
     <MESSAGE value="renvoie les solutions pour tous les k et identifie le meilleur makespan" />
-    <option name="LAST_COMMIT_MESSAGE" value="renvoie les solutions pour tous les k et identifie le meilleur makespan" />
+    <MESSAGE value="Début tri dynamique," />
+    <option name="LAST_COMMIT_MESSAGE" value="Début tri dynamique," />
   </component>
 </project>
