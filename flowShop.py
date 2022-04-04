@@ -206,33 +206,32 @@ class Flowshop:
         jobsSumTrie = self.tri_insertionDec(jobsSum)
         print("jobsSumTrie", jobsSumTrie)
 
-        #3 : Tester le makespan pour l'ordre 1'
-        ordreTest = []
-        self.makespans = []
-        ordreTest.append(jobsSumTrie[0])
-        ordreTest.append(jobsSumTrie[1])
-        print("calcul du makespan avec l'ordre", ordreTest)
-        makespan = self.makespan(ordreTest, len(ordreTest)-1, self.nb_machines)
-        print("makespan : ", makespan)
-        # on l'ajoute à la liste
-        self.makespans.append(makespan)
+        #3 prendre la tâche la plus grande non encore triée
+        currentSequece = [jobsSumTrie[0]]
 
-        # 3 : Tester le makespan pour l'ordre 2'
-        tmp = ordreTest[1];
-        ordreTest[1] = ordreTest[0];
-        ordreTest[0] = tmp;
-        print("calcul du makespan avec l'ordre", ordreTest)
-        makespan = self.makespan(ordreTest, len(ordreTest)-1, self.nb_machines)
-        print("makespan : ", makespan)
-        # on l'ajoute à la liste
-        self.makespans.append(makespan)
+        for i in range(1, self.nb_jobs):
+            # nouvelle tâche qu'il va falloir bien placer dans la séquence déjà triée
+            jobEnCours = jobsSumTrie[i]
+            makespanMin = float("inf")
+            #on parcours les placements possibles de jobEnCours
+            for j in range(0, i+1):
+                # On insère jobEnCours dans la séquence
+                seqJobsenCours = self.insertion(currentSequece, j, jobEnCours)
 
-        makespanMin = self.getMinMakespan(self.makespans)
-        print("Makespan retenu est", makespanMin[0], "de l'indice", makespanMin[1])
+                makespan = self.makespan(seqJobsenCours, len(seqJobsenCours) - 1, self.nb_machines)
+                print("Le makespan avec l'ordre", seqJobsenCours, "vaut", makespan)
 
-        #makespan()
+                if makespanMin > makespan:
+                    bestSeqJobs = seqJobsenCours
+                    makespanMin = makespan
+            currentSequece = bestSeqJobs
+            print("la meilleur séquence retenue est", currentSequece)
+        makespanFinal = self.makespan(currentSequece, len(currentSequece) - 1, self.nb_machines)
+        return currentSequece, makespanFinal
 
-        return 0
 
-    def insersion(self):
-        return 0
+    # insert a new job
+    def insertion(self, seq, index_position, value):
+        newListJobs = seq[:]
+        newListJobs.insert(index_position, value)
+        return newListJobs

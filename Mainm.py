@@ -10,7 +10,8 @@ def main():
     flowshop.printJobs()
 
     # appel de l'heuristique voulue
-    flowshop.NEH()
+    [currentSequece, makespanFinal] = flowshop.NEH()
+    print("Tri terminé. L'ordre final des tâches est", currentSequece, "avec un Makespan de ", makespanFinal)
     #flowshop.JohnsonOuCDS()
 
     #lowshop.NEH()
