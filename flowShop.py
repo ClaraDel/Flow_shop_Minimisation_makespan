@@ -1,5 +1,6 @@
 import random
 #from numpy import copy
+import itertools as it
 
 class Flowshop:
 
@@ -76,7 +77,7 @@ class Flowshop:
         # on print la solution finale
         print("La meilleur solution retenue est l'ordre ")
         self.printJobOrder(jobsOrdered)
-        print("avec un makesman =", makespans)
+        print("avec un makespan =", makespans)
 
 
     def Johnson(self, jobs):
@@ -160,12 +161,12 @@ class Flowshop:
             print("Tâche n°", tab[i][0], self.jobs[tab[i][0]][1:])
 
     def methExa(self):
-        tab = []
-        for i in range(self.nb_jobs):
-            f = 0
-            for j in range(self.nb_machines):
-                f = f + (self.nb_machines - 2*j + 1)*self.jobs[i][j + 1]
-            tab.append(f)
+        minMakespan = 0
+        for order in it.permutations(self.jobs, self.nb_jobs):
+            temp = self.makespan(order, self.nb_jobs - 1, self.nb_machines)
+            if temp < minMakespan or minMakespan == 0:
+                minMakespan = temp
+        print("La méthode exacte donne un makespan minimum de :", minMakespan)
 
     def iterTriDynamique(self):
         order = []
