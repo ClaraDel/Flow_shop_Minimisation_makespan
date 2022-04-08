@@ -1,15 +1,22 @@
 import random
 #from numpy import copy
 import itertools as it
+import time as t
+import Instances as inst
 
 class Flowshop:
 
     def __init__(self, nb_machines, nb_jobs):
         self.nb_machines = nb_machines
         self.nb_jobs = nb_jobs
-        self.jobs = self.randFlowshop()
+        #self.jobs = self.randFlowshop()
+        self.jobs = inst.A
         self.makespans = []
         print("--- Initialisation d'un problème d'ordonnancement avec ", self.nb_jobs, "tâches et ", self.nb_machines, "machines ---")
+
+    def __int__(self, stringFile):
+        file = open(stringFile,"r")
+        print(file.read())
 
     def randFlowshop(self):
         jobs = [[random.randrange(1, 50) for _ in range(self.nb_machines + 1)] for _ in range(self.nb_jobs)]
@@ -25,8 +32,9 @@ class Flowshop:
     # heuristique de Campbell, Dudek et Smith
     def CDS(self):
         if self.nb_machines > 2:
+            minMakespan = 0
             for k in range(1, self.nb_machines):
-                print("pour k = ", k)
+                # print("pour k = ", k)
                 jobsSum = []
                 for i in range(self.nb_jobs):
                     fList = self.jobs[i][1:k + 1].copy()
@@ -35,17 +43,21 @@ class Flowshop:
                 # on récupère la liste des tâches triée dans l'odre de l'algorithme de Johnson
                 jobsOrdered = self.Johnson(jobs=jobsSum)
                 # on l'affiche dans la console
-                self.printJobOrder(jobsOrdered)
+                # self.printJobOrder(jobsOrdered)
                 # on calculz le makespan pour cet ordre précis
                 #makespans = self.makespan(jobsOrdered, self.nb_machines - 1, self.nb_jobs)
-                makespans = self.makespan(jobsOrdered, self.nb_jobs-1, self.nb_machines)
+                makespan = self.makespan(jobsOrdered, self.nb_jobs-1, self.nb_machines)
                 # on l'ajoute à une liste
-                self.makespans.append(makespans)
-                print("Makespan de la solution avec k =", k, ":", self.makespans[-1])
+                if makespan < minMakespan or minMakespan == 0:
+                    makespanMin = makespan
+                    orderMin = jobsOrdered
+                    indiceMin = k
+                # self.makespans.append(makespans)
+                # print("Makespan de la solution avec k =", k, ":", self.makespans[-1])
             # on récupère le makespan le plus petit
-            [makespanMin, indiceMin] = self.getMinMakespan(self.makespans)
+            # [makespanMin, indiceMin] = self.getMinMakespan(self.makespans)
             # on print la solution finale
-            self.printSolution(indiceMin, makespanMin)
+            self.printSolution(indiceMin, makespanMin, orderMin)
 
     def getMinMakespan(self, makespans):
         temp = makespans[0]
@@ -56,29 +68,11 @@ class Flowshop:
                 temp = self.makespans[i]
         return temp, indiceMin
 
-    def printSolution(self, indiceMin, makespanMin):
-        print("La meilleur solution retenue est l'ordre avec k =", indiceMin + 1, "avec un makesman =", makespanMin)
-
-    def Johnson2M(self):
-        U = []
-        V = []
+    def printSolution(self, indiceMin, makespanMin, orderMin):
+        print("La meilleur solution retenue est l'ordre ", end=' ')
         for i in range(self.nb_jobs):
-            if self.jobs[i][1] < self.jobs[i][2]:
-                U.append(self.jobs[i])
-            else:
-                V.append(self.jobs[i])
-
-        U = self.tri_insertion(U)
-        V = self.tri_insertionDec(V)
-        jobsOrdered = U + V
-        # on calculz le makespan pour cet ordre
-        #makespans = self.makespan2M(jobsOrdered, self.nb_machines - 1, self.nb_jobs)
-        makespans = self.makespan2M(jobsOrdered, self.nb_jobs-1, self.nb_machines)
-        # on print la solution finale
-        print("La meilleur solution retenue est l'ordre ")
-        self.printJobOrder(jobsOrdered)
-        print("avec un makespan =", makespans)
-
+            print(orderMin[i][0], end=' ')
+        print("avec k =", indiceMin + 1, "avec un makespan =", makespanMin)
 
     def Johnson(self, jobs):
         U = []
@@ -117,19 +111,13 @@ class Flowshop:
             tab[j] = temp
         return tab
 
-    # def reductionPb(self):
-    #     if self.nb_machines > 3:
-    #         for i in range(self.nb_jobs, 1):
-    #             self.Johnson(jobs=(self.jobs(i-1), self.jobs(i)))
-    #
-    #     else:
-    #         return self.Johnson2M()
-
     def JohnsonOuCDS(self):
         if self.nb_machines >= 3:
+            print("\nDébut de la méthode Dudek Smith")
             self.CDS()
         else:
-            self.Johnson2M()
+            print("\nDébut de la méthode Johnson")
+            self.Johnson()
 
     def makespan(self, order, i, m):
         # self.jobs[tab[i][0]][1:]
@@ -143,30 +131,23 @@ class Flowshop:
             t = self.jobs[order[i][0]][m] + max(self.makespan(order, i - 1, m), self.makespan(order, i, m - 1))
         return t
 
-    def makespan2M(self, order, i, m):
-        # self.jobs[tab[i][0]][1:]
-        if i == 0 and m == 1:
-            t = order[i][1]
-        elif i == 0:
-            t = order[i][m] + self.makespan(order, 0, m - 1)
-        elif m == 1:
-            t = order[i][m] + self.makespan(order, i - 1, 1)
-        else:
-            t = order[i][m] + max(self.makespan(order, i - 1, m), self.makespan(order, i, m - 1))
-        return t
-
     def printJobOrder(self, tab):
         print("Ordre des tâches :")
         for i in range(len(tab)):
             print("Tâche n°", tab[i][0], self.jobs[tab[i][0]][1:])
 
     def methExa(self):
+        print("\nDébut de la méthode exacte")
         minMakespan = 0
         for order in it.permutations(self.jobs, self.nb_jobs):
             temp = self.makespan(order, self.nb_jobs - 1, self.nb_machines)
             if temp < minMakespan or minMakespan == 0:
                 minMakespan = temp
-        print("La méthode exacte donne un makespan minimum de :", minMakespan)
+                meilleurOrdre = order
+        print("La méthode exacte donne un makespan minimum de :", minMakespan, "et l'ordre est :", end=' ')
+        for i in range(self.nb_jobs):
+            print(meilleurOrdre[i][0], end=' ')
+        print()
 
     def iterTriDynamique(self):
         order = []
@@ -196,16 +177,16 @@ class Flowshop:
 
     # Heuristique de Nawaz, Enscore et Ham
     def NEH(self):
-
+        print("\nDébut de la méthode Nawaz, Enscore et Ham")
         #1 : somme de tous les temps d'opérations sur chaque machine
         jobsSum = []
         for i in range(self.nb_jobs):
             jobsSum.append([self.jobs[i][0], sum(self.jobs[i][1:])])
-        print("jobsSum", jobsSum)
+        # print("jobsSum", jobsSum)
 
         #2 : trier le tableau
         jobsSumTrie = self.tri_insertionDec(jobsSum)
-        print("jobsSumTrie", jobsSumTrie)
+        # print("jobsSumTrie", jobsSumTrie)
 
         #3 prendre la tâche la plus grande non encore triée
         currentSequece = [jobsSumTrie[0]]
@@ -220,19 +201,55 @@ class Flowshop:
                 seqJobsenCours = self.insertion(currentSequece, j, jobEnCours)
 
                 makespan = self.makespan(seqJobsenCours, len(seqJobsenCours) - 1, self.nb_machines)
-                print("Le makespan avec l'ordre", seqJobsenCours, "vaut", makespan)
+                # print("Le makespan avec l'ordre", seqJobsenCours, "vaut", makespan)
 
                 if makespanMin > makespan:
                     bestSeqJobs = seqJobsenCours
                     makespanMin = makespan
             currentSequece = bestSeqJobs
-            print("la meilleur séquence retenue est", currentSequece)
+            # print("la meilleur séquence retenue est", currentSequece)
         makespanFinal = self.makespan(currentSequece, len(currentSequece) - 1, self.nb_machines)
         return currentSequece, makespanFinal
 
+    def BranchAndBound(self):
+        end = True
+        jobs = []
+        jobsRestants = self.jobs.copy()
+        while end:
+            nodeWeight = min(self.calculLowerBounds(jobsRestants))
+            for j in range(len(jobsRestants)):
+                temp = min(self.calculLowerBounds(jobsRestants))
+                if  temp < nodeWeight:
+                    nodeWeight = temp
+            end = False
+
+    def calculLowerBounds(self, jobs):
+        lowerBounds = []
+        for m in range(1, self.nb_machines + 1):
+            minPts = []
+            lb = jobs[1][m] + jobs[len(jobs) - 1][m]
+            minPts.append(sum(jobs[1][1:m - 1] + jobs[1][m + 1:]))
+            for j in range(2, len(jobs) - 1):
+                lb = lb + jobs[j][m]
+                minPts.append(sum(jobs[j][1:m - 1] + jobs[j][m + 1:]))
+            minPts.append(sum(jobs[len(jobs) - 1][1:m - 1] + jobs[len(jobs) - 1][m + 1:]))
+            lb = lb + min(minPts)
+            lowerBounds.append(lb)
+        return lowerBounds
 
     # insert a new job
     def insertion(self, seq, index_position, value):
         newListJobs = seq[:]
         newListJobs.insert(index_position, value)
         return newListJobs
+
+    def hPalmer(self):
+        print("Début de l'heuristique de Palmer :")
+        ordre = []
+        for j in range(self.nb_jobs):
+            f = 0
+            for m in range(1, self.nb_machines + 1):
+                f = f + (self.nb_machines - 2 * m + 1) * self.jobs[j][m]
+            ordre.append(f)
+            ordre = self.tri_insertion(ordre)
+        return ordre
