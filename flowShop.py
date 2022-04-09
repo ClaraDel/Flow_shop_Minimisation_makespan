@@ -7,11 +7,11 @@ from LongestPathGraph import *
 
 class Flowshop:
 
-    def __init__(self, nb_machines, nb_jobs):
+    def __init__(self, nb_machines, nb_jobs, t_max_random):
         self.nb_machines = nb_machines
         self.nb_jobs = nb_jobs
-        self.jobs = self.randFlowshop()
-        #self.jobs = inst.A
+        #self.jobs = self.randFlowshop(t_max_random)
+        self.jobs = inst.B
         self.makespans = []
         print("--- Initialisation d'un problème d'ordonnancement avec ", self.nb_jobs, "tâches et ", self.nb_machines, "machines ---")
 
@@ -19,8 +19,8 @@ class Flowshop:
         file = open(stringFile,"r")
         print(file.read())
 
-    def randFlowshop(self):
-        jobs = [[random.randrange(1, 50) for _ in range(self.nb_machines + 1)] for _ in range(self.nb_jobs)]
+    def randFlowshop(self, t_max_random):
+        jobs = [[random.randrange(1, t_max_random) for _ in range(self.nb_machines + 1)] for _ in range(self.nb_jobs)]
         for i in range(self.nb_jobs):
             jobs[i][0] = i
         return jobs
@@ -132,28 +132,37 @@ class Flowshop:
             t = self.jobs[order[i][0]][m] + max(self.makespan(order, i - 1, m), self.makespan(order, i, m - 1))
         return t
 
+    def makespanCompare(self):
+        order = self.jobs
+        makespanClassique = self.makespan(order, self.nb_jobs - 1, self.nb_machines)
+        print("makespanClassique =", makespanClassique)
+
     def makespanGraph(self):
         mak = 0
+        firstNode =  0
+        lastWeight = self.jobs[self.nb_jobs-1][self.nb_machines]
         graph = Graph(self.nb_jobs*self.nb_machines)
         for i in range(self.nb_jobs):
             for j in range(self.nb_machines):
                 indexNode = self.nb_machines*i + j
                 if (i == self.nb_jobs - 1 and j == self.nb_machines - 1): #si on est à la dernière opération de la dernière tâche
                     #ne pas ajouter de voisins
-                    print("node n.", indexNode, "has no neighbours, i=", i, "j=" , j, "machine=", self.nb_machines, "jobs =", self.nb_jobs)
+                    print("node n.", indexNode, "has no neighbours")
                     pass
                 elif(i==self.nb_jobs-1): #si est est à la dernière tâche
                     #n'ajouter que le noeud de l'opération suivante
-                    graph.addEdge(indexNode, indexNode + 1, self.jobs[i][j + 1])
+                    graph.addEdge(indexNode, indexNode + 1, -self.jobs[i][j + 1])
                 elif (j == self.nb_machines - 1): #si est est à la dernière opération
                     # n'ajouter que le noeud de la tâche suivante
-                    graph.addEdge(indexNode, indexNode+ self.nb_machines, self.jobs[i][j + 1])
+                    graph.addEdge(indexNode, indexNode+ self.nb_machines, -self.jobs[i][j + 1])
                 else :
                     #ajouter le noeud de la tâche suivante et de l'opération suivante
-                    graph.addEdge(indexNode, indexNode+1, self.jobs[i][j+1])
-                    graph.addEdge(indexNode, indexNode+ self.nb_machines, self.jobs[i][j + 1])
+                    graph.addEdge(indexNode, indexNode+1, -self.jobs[i][j+1])
+                    graph.addEdge(indexNode, indexNode+ self.nb_machines, -self.jobs[i][j + 1])
                 print("node n.", indexNode, "=" ,graph.graph[indexNode])
-
+        print("Le chemin le plus long est la somme des distances suivantes : ")
+        graph.shortestPath(firstNode)
+        print("ce qui fait un makespan de : ", graph.setMakespan(lastWeight))
         return mak
 
     def printJobOrder(self, tab):

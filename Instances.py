@@ -51,3 +51,8 @@ A = [[1 , 4 , 86 ,21 ,28 ,67 ,32 ,17 ,37, 43],
 
 for i in range(len(A)):
     A[i].insert(0, i)
+
+B = [[2, 1, 4], [3, 5, 1],[1, 1, 3], [4, 5, 1]]
+
+for i in range(len(B)):
+    B[i].insert(0, i)

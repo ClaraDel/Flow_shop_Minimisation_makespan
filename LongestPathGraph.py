@@ -15,6 +15,10 @@ class Graph:
         # dictionary containing adjacency List
         self.graph = defaultdict(list)
 
+        # Initialize distances to all vertices as infinite and
+        # distance to source as 0
+        self.dist = [float("Inf")] * (self.V)
+
     # function to add an edge to graph
     def addEdge(self, u, v, w):
         #u : numéro de sommet
@@ -53,10 +57,7 @@ class Graph:
             if visited[i] == False:
                 self.topologicalSortUtil(s, visited, stack)
 
-        # Initialize distances to all vertices as infinite and
-        # distance to source as 0
-        dist = [float("Inf")] * (self.V)
-        dist[s] = 0
+        self.dist[s] = 0
 
         # Process vertices in topological order
         while stack:
@@ -66,13 +67,18 @@ class Graph:
 
             # Update distances of all adjacent vertices
             for node, weight in self.graph[i]:
-                if dist[node] > dist[i] + weight:
-                    dist[node] = dist[i] + weight
+                if self.dist[node] > self.dist[i] + weight:
+                    self.dist[node] = self.dist[i] + weight
 
         # Print the calculated shortest distances
         for i in range(self.V):
-            print("%d" % dist[i]) if dist[i] != float("Inf") else "Inf",
+            print("noeud n.", i , "distance =", "%d" % self.dist[i]) if self.dist[i] != float("Inf") else "Inf",
 
+
+    def setMakespan(self, lastWeight):
+        makespan = 0
+        makespan = self.dist[self.V-1]-lastWeight
+        return -makespan
 
 #g = Graph(6)
 # g.addEdge(0, 1, 5)

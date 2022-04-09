@@ -7,8 +7,9 @@ def main():
     #initialisation du problème d'ordonnancement
     nb_machines = 3
     nb_jobs = 4
+    t_max_random = 6
 
-    flowshop = Flowshop(nb_machines, nb_jobs)
+    flowshop = Flowshop(nb_machines, nb_jobs, t_max_random)
     flowshop.printJobs()
 
     # appel de l'heuristique voulue
@@ -35,8 +36,11 @@ def main():
     # for i in range(len(ordre)):
     #     print(ordre[0][i], end=' ')
     # print("avec un makespan de :", makespan)
-
+    print("----makespanGraph----")
     flowshop.makespanGraph()
+
+    print("----makespanclassique----")
+    flowshop.makespanCompare()
 
 
     # startTime = t.time()
