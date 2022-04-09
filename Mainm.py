@@ -38,11 +38,6 @@ def main():
         print(ordre[0][i], end=' ')
     print("avec un makespan de :", makespan)
 
-    # print("----makespanGraph----")
-    # flowshop.makespanGraph()
-    #
-    # print("----makespanclassique----")
-    # flowshop.makespanCompare()
 
 
     # startTime = t.time()
