@@ -178,7 +178,7 @@ class Flowshop:
         print("\nDébut de la méthode exacte")
         minMakespan = 0
         for order in it.permutations(self.jobs, self.nb_jobs):
-            temp = self.makespan(order, self.nb_jobs - 1, self.nb_machines)
+            temp = self.makespanGraph(order, self.nb_jobs - 1)
             if temp < minMakespan or minMakespan == 0:
                 minMakespan = temp
                 meilleurOrdre = order
