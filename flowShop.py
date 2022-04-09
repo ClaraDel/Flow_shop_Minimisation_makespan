@@ -43,11 +43,9 @@ class Flowshop:
                     jobsSum.append([self.jobs[i][0], sum(fList), sum(lList)])
                 # on récupère la liste des tâches triée dans l'odre de l'algorithme de Johnson
                 jobsOrdered = self.Johnson(jobs=jobsSum)
-                # on l'affiche dans la console
                 # self.printJobOrder(jobsOrdered)
                 # on calculz le makespan pour cet ordre précis
-                #makespans = self.makespan(jobsOrdered, self.nb_machines - 1, self.nb_jobs)
-                makespan = self.makespan(jobsOrdered, self.nb_jobs-1, self.nb_machines)
+                makespan = self.makespanGraph(jobsOrdered, self.nb_jobs - 1)
                 # on l'ajoute à une liste
                 if makespan < minMakespan or minMakespan == 0:
                     makespanMin = makespan
@@ -55,8 +53,6 @@ class Flowshop:
                     indiceMin = k
                 # self.makespans.append(makespans)
                 # print("Makespan de la solution avec k =", k, ":", self.makespans[-1])
-            # on récupère le makespan le plus petit
-            # [makespanMin, indiceMin] = self.getMinMakespan(self.makespans)
             # on print la solution finale
             self.printSolution(indiceMin, makespanMin, orderMin)
 
@@ -132,40 +128,46 @@ class Flowshop:
             t = self.jobs[order[i][0]][m] + max(self.makespan(order, i - 1, m), self.makespan(order, i, m - 1))
         return t
 
-    def makespanCompare(self):
-        order = self.jobs
-        makespanClassique = self.makespan(order, self.nb_jobs - 1, self.nb_machines)
-        print("makespanClassique =", makespanClassique)
+    def makespanCompare(self, order, nbJobs):
 
-    def makespanGraph(self):
-        mak = 0
+        makespanClassique = self.makespan(order, nbJobs, self.nb_machines) #+ lastWeight
+        print("makespanClassique =", makespanClassique)
+        return makespanClassique
+
+    def makespanGraph(self, order, nbJobs):
+        makespan = 0
         firstNode =  0
-        lastWeight = self.jobs[self.nb_jobs-1][self.nb_machines]
-        graph = Graph(self.nb_jobs*self.nb_machines)
-        for i in range(self.nb_jobs):
+        lastWeight = self.jobs[order[nbJobs][0]][self.nb_machines]
+        graph = Graph((nbJobs+1)*self.nb_machines)
+        #for i in range(self.nb_jobs):
+        # print("order =")
+        # for i in range(len(order)):
+        #     print(order[i][0])
+        for i in range(nbJobs+1):
             for j in range(self.nb_machines):
                 indexNode = self.nb_machines*i + j
-                if (i == self.nb_jobs - 1 and j == self.nb_machines - 1): #si on est à la dernière opération de la dernière tâche
+                if (i == nbJobs and j == self.nb_machines - 1): #si on est à la dernière opération de la dernière tâche
                     #ne pas ajouter de voisins
-                    print("node n.", indexNode, "has no neighbours")
+                    #print("node n.", indexNode, "has no neighbours")
                     pass
-                elif(i==self.nb_jobs-1): #si est est à la dernière tâche
+                elif(i==nbJobs): #si est est à la dernière tâche
                     #n'ajouter que le noeud de l'opération suivante
-                    graph.addEdge(indexNode, indexNode + 1, -self.jobs[i][j + 1])
+                    graph.addEdge(indexNode, indexNode + 1, -self.jobs[order[i][0]][j + 1])
                 elif (j == self.nb_machines - 1): #si est est à la dernière opération
                     # n'ajouter que le noeud de la tâche suivante
-                    graph.addEdge(indexNode, indexNode+ self.nb_machines, -self.jobs[i][j + 1])
+                    graph.addEdge(indexNode, indexNode+ self.nb_machines, -self.jobs[order[i][0]][j + 1])
                 else :
                     #ajouter le noeud de la tâche suivante et de l'opération suivante
-                    graph.addEdge(indexNode, indexNode+1, -self.jobs[i][j+1])
-                    graph.addEdge(indexNode, indexNode+ self.nb_machines, -self.jobs[i][j + 1])
-                print("node n.", indexNode, "=" ,graph.graph[indexNode])
-                #tri dans l'ordre topologique :
-        graph.triTopologique(self.nb_machines, self.nb_jobs)
-        print("Le chemin le plus long est la somme des distances suivantes : ")
+                    graph.addEdge(indexNode, indexNode+1, -self.jobs[order[i][0]][j+1])
+                    graph.addEdge(indexNode, indexNode+ self.nb_machines, -self.jobs[order[i][0]][j + 1])
+                #print("node n.", indexNode, "=" ,graph.graph[indexNode])
+
+        #tri dans l'ordre topologique :
+        graph.triTopologique(self.nb_machines, nbJobs+1)
+        #on récupère le chemin le plus grand :
         graph.shortestPath(firstNode)
-        print("ce qui fait un makespan de : ", graph.setMakespan(lastWeight))
-        return mak
+        makespan = graph.setMakespan(lastWeight)
+        return makespan
 
     def printJobOrder(self, tab):
         print("Ordre des tâches :")
@@ -236,15 +238,17 @@ class Flowshop:
                 # On insère jobEnCours dans la séquence
                 seqJobsenCours = self.insertion(currentSequece, j, jobEnCours)
 
-                makespan = self.makespan(seqJobsenCours, len(seqJobsenCours) - 1, self.nb_machines)
+                makespan = self.makespanGraph(seqJobsenCours, len(seqJobsenCours) - 1)
+                #makespan = self.makespanCompare(seqJobsenCours, len(seqJobsenCours) - 1)
                 # print("Le makespan avec l'ordre", seqJobsenCours, "vaut", makespan)
 
                 if makespanMin > makespan:
                     bestSeqJobs = seqJobsenCours
                     makespanMin = makespan
+
             currentSequece = bestSeqJobs
-            # print("la meilleur séquence retenue est", currentSequece)
-        makespanFinal = self.makespan(currentSequece, len(currentSequece) - 1, self.nb_machines)
+        makespanFinal = self.makespanGraph(currentSequece, len(currentSequece) - 1)
+        #makespanFinal = self.makespanCompare(currentSequece, len(seqJobsenCours) - 1)
         return currentSequece, makespanFinal
 
     def BranchAndBound(self):

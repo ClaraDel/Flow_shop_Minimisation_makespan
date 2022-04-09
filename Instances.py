@@ -56,3 +56,8 @@ B = [[2, 1, 4], [3, 5, 1],[1, 1, 3], [4, 5, 1]]
 
 for i in range(len(B)):
     B[i].insert(0, i)
+
+C = [[2, 4], [3, 5],[1, 1]]
+
+for i in range(len(C)):
+    C[i].insert(0, i)

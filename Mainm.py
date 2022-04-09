@@ -5,9 +5,9 @@ import time as t
 def main():
 
     #initialisation du problème d'ordonnancement
-    nb_machines = 3
-    nb_jobs = 4
-    t_max_random = 10
+    nb_machines = 10
+    nb_jobs = 10
+    t_max_random = 50
 
     flowshop = Flowshop(nb_machines, nb_jobs, t_max_random)
     flowshop.printJobs()
@@ -28,19 +28,21 @@ def main():
     # print("Temps d'exécution depuis le début de la méthode :", t.time() - startTime)
 
     #PALMER
-    # startTime = t.time()
-    # ordre = flowshop.hPalmer()
-    # makespan = flowshop.makespan(ordre, nb_jobs - 1, nb_machines)
-    # print("Temps d'exécution depuis le début de la méthode :", t.time() - startTime)
-    # print("Pour l'heuristique de Palmer, l'ordre optimale est :", end=' ')
-    # for i in range(len(ordre)):
-    #     print(ordre[0][i], end=' ')
-    # print("avec un makespan de :", makespan)
-    print("----makespanGraph----")
-    flowshop.makespanGraph()
+    startTime = t.time()
+    ordre = flowshop.hPalmer()
+    #makespan = flowshop.makespan(ordre, nb_jobs - 1, nb_machines)
+    makespan = flowshop.makespanGraph(ordre, nb_jobs - 1)
+    print("Temps d'exécution depuis le début de la méthode :", t.time() - startTime)
+    print("Pour l'heuristique de Palmer, l'ordre optimale est :", end=' ')
+    for i in range(len(ordre)):
+        print(ordre[0][i], end=' ')
+    print("avec un makespan de :", makespan)
 
-    print("----makespanclassique----")
-    flowshop.makespanCompare()
+    # print("----makespanGraph----")
+    # flowshop.makespanGraph()
+    #
+    # print("----makespanclassique----")
+    # flowshop.makespanCompare()
 
 
     # startTime = t.time()

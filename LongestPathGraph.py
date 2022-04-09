@@ -1,18 +1,12 @@
-# Python program to find single source shortest paths
-# for Directed Acyclic Graphs Complexity :OV(V+E)
 from collections import defaultdict
 
-
-# Graph is represented using adjacency list. Every
-# node of adjacency list contains vertex number of
-# the vertex to which edge connects. It also contains
-# weight of the edge
+#le graphe possède une liste de tous les noeuds qui ont des noeuds adjacents, et ce avec la distance avec ces derniers
 class Graph:
     def __init__(self, vertices):
+        #nombre de noeuds que contient le graphe
+        self.V = vertices
 
-        self.V = vertices  # No. of vertices
-
-        # dictionary containing adjacency List
+        # liste de : id du noeuds puis ses voisins avce la distance
         self.graph = defaultdict(list)
 
         # on initiaise la distance à devoir comparer à infini sauf la source qui vaut 0
@@ -21,7 +15,7 @@ class Graph:
         # pile des vertices à parcourir dans l'ordre topologique
         self.stack = []
 
-    # construction du graph : on n'ajoute que les noeuds ayant au moins un voisin
+    # construction du graphe : on n'ajoute que les noeuds ayant au moins un voisin
     def addEdge(self, u, v, w):
         #u : numéro de vertice
         #v = : vertice voisin relié à u
@@ -29,16 +23,11 @@ class Graph:
         self.graph[u].append((v, w))
 
     def triTopologique(self, nb_machines, nb_jobs):
-        # on créée une pile de tous les vertex triée dans l'ordre topologique)
+        # on créée une pile de tous les vertex triée dans l'ordre topologique
         for i in range(nb_machines-1, -1, -1):
             for j in range(nb_jobs-1, -1, -1):
                 self.stack.append(j*nb_machines+i)
-        print("stack =", self.stack)
-
-
-    ''' The function to find shortest paths from given vertex.
-        It uses recursive topologicalSortUtil() to get topological
-        sorting of given graph.'''
+        #print("stack =", self.stack)
 
     def shortestPath(self, s):
 
@@ -57,8 +46,7 @@ class Graph:
                 if self.dist[node] > self.dist[i] + weight:
                     self.dist[node] = self.dist[i] + weight
 
-
     def setMakespan(self, lastWeight):
-        makespan = 0
+        # on récupère le makespan à savoit le chemin le plus grand du premier au dernier noeuds + le temps de la dernière opération
         makespan = self.dist[self.V-1]-lastWeight
         return -makespan
