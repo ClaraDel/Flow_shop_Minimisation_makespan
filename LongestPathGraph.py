@@ -15,31 +15,26 @@ class Graph:
         # dictionary containing adjacency List
         self.graph = defaultdict(list)
 
-        # Initialize distances to all vertices as infinite and
-        # distance to source as 0
+        # on initiaise la distance à devoir comparer à infini sauf la source qui vaut 0
         self.dist = [float("Inf")] * (self.V)
 
-    # function to add an edge to graph
+        # pile des vertices à parcourir dans l'ordre topologique
+        self.stack = []
+
+    # construction du graph : on n'ajoute que les noeuds ayant au moins un voisin
     def addEdge(self, u, v, w):
-        #u : numéro de sommet
-        #v = : voisin relié à u
+        #u : numéro de vertice
+        #v = : vertice voisin relié à u
         #w : longueur de l'arrête entre u et v
         self.graph[u].append((v, w))
 
-    # A recursive function used by shortestPath
-    def topologicalSortUtil(self, v, visited, stack):
+    def triTopologique(self, nb_machines, nb_jobs):
+        # on créée une pile de tous les vertex triée dans l'ordre topologique)
+        for i in range(nb_machines-1, -1, -1):
+            for j in range(nb_jobs-1, -1, -1):
+                self.stack.append(j*nb_machines+i)
+        print("stack =", self.stack)
 
-        # Mark the current node as visited.
-        visited[v] = True
-
-        # Recur for all the vertices adjacent to this vertex
-        if v in self.graph.keys():
-            for node, weight in self.graph[v]:
-                if visited[node] == False:
-                    self.topologicalSortUtil(node, visited, stack)
-
-        # Push current vertex to stack which stores topological sort
-        stack.append(v)
 
     ''' The function to find shortest paths from given vertex.
         It uses recursive topologicalSortUtil() to get topological
@@ -49,55 +44,21 @@ class Graph:
 
         # Mark all the vertices as not visited
         visited = [False] * self.V
-        stack = []
-
-        # Call the recursive helper function to store Topological
-        # Sort starting from source vertice
-        for i in range(self.V):
-            if visited[i] == False:
-                self.topologicalSortUtil(s, visited, stack)
-
         self.dist[s] = 0
 
-        # Process vertices in topological order
-        while stack:
+        # on parcours l'ordre topologique des noeuds
+        while self.stack:
 
             # Get the next vertex from topological order
-            i = stack.pop()
+            i = self.stack.pop()
 
-            # Update distances of all adjacent vertices
+            # on met à jour les distances si elles sont mieux que les valeurs précédentes
             for node, weight in self.graph[i]:
                 if self.dist[node] > self.dist[i] + weight:
                     self.dist[node] = self.dist[i] + weight
-
-        # Print the calculated shortest distances
-        for i in range(self.V):
-            print("noeud n.", i , "distance =", "%d" % self.dist[i]) if self.dist[i] != float("Inf") else "Inf",
 
 
     def setMakespan(self, lastWeight):
         makespan = 0
         makespan = self.dist[self.V-1]-lastWeight
         return -makespan
-
-#g = Graph(6)
-# g.addEdge(0, 1, 5)
-# g.addEdge(0, 2, 3)
-# g.addEdge(1, 3, 6)
-# g.addEdge(1, 2, 2)
-# g.addEdge(2, 4, 4)
-# g.addEdge(2, 5, 2)
-# g.addEdge(2, 3, 7)
-# g.addEdge(3, 4, -1)
-# g.addEdge(4, 5, -2)
-
-
-# for i in range(6) :
-#     print("self.graph : ", g.graph[i])
-# # source = 1
-# s = 1
-#
-# print("Following are shortest distances from source %d " % s)
-# g.shortestPath(s)
-
-# This code is contributed by Neelam Yadav

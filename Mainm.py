@@ -7,7 +7,7 @@ def main():
     #initialisation du problème d'ordonnancement
     nb_machines = 3
     nb_jobs = 4
-    t_max_random = 6
+    t_max_random = 10
 
     flowshop = Flowshop(nb_machines, nb_jobs, t_max_random)
     flowshop.printJobs()

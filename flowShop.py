@@ -10,8 +10,8 @@ class Flowshop:
     def __init__(self, nb_machines, nb_jobs, t_max_random):
         self.nb_machines = nb_machines
         self.nb_jobs = nb_jobs
-        #self.jobs = self.randFlowshop(t_max_random)
-        self.jobs = inst.B
+        self.jobs = self.randFlowshop(t_max_random)
+        #self.jobs = inst.B
         self.makespans = []
         print("--- Initialisation d'un problème d'ordonnancement avec ", self.nb_jobs, "tâches et ", self.nb_machines, "machines ---")
 
@@ -160,6 +160,8 @@ class Flowshop:
                     graph.addEdge(indexNode, indexNode+1, -self.jobs[i][j+1])
                     graph.addEdge(indexNode, indexNode+ self.nb_machines, -self.jobs[i][j + 1])
                 print("node n.", indexNode, "=" ,graph.graph[indexNode])
+                #tri dans l'ordre topologique :
+        graph.triTopologique(self.nb_machines, self.nb_jobs)
         print("Le chemin le plus long est la somme des distances suivantes : ")
         graph.shortestPath(firstNode)
         print("ce qui fait un makespan de : ", graph.setMakespan(lastWeight))
