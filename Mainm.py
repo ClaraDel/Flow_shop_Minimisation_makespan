@@ -85,11 +85,14 @@ def main():
         times = [[10, 20, 50]]
         for m in [10, 20, 50]:
             print("Pour", j, "tâches et", m, "machines :")
-            [makespan, time, erreur] = flowshopFct(j, m, 50, 1)
+            [makespan, time] = flowshopFct(j, m, 50, 1)
             makespans.append(makespan)
             times.append(time)
-        graphique(('Moyenne des différents makespans pour ', j, ' tâches.'), makespans)
-        graphique(('Moyenne des différents temps pour ', j, ' tâches.'), times)
+        titremakespans = 'Moyenne des différents makespans pour '+str(j)+' tâches'
+        titreTemps = 'Moyenne des différents temps pour' +str(j)+ 'tâches'
+
+        graphique(titremakespans, makespans)
+        graphique(titremakespans, times)
         # print(erreur)
 
 main()
