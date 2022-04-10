@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="tri insertion début">
+    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="Ajout de plot&#10;&#10;Mise en forme pour pouvoir faire plusieurs tests et des moyennes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mainm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mainm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flowShop.py" beforeDir="false" afterPath="$PROJECT_DIR$/flowShop.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +18,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -33,7 +37,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="277FMNIoB2Vh3LAtH2i6NaN1R0U" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,10 +47,32 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ML/Projet/MineRL" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python.Mainm">
+    <configuration name="Instances" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Flow_shop_Minimisation_makespan" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Instances.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Flow_shop_Minimisation_makespan" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -57,6 +85,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -66,18 +95,19 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Mainm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Mainm" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Flow_shop_Minimisation_makespan" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="D:\Logiciel\anaconda3\envs\Projet\python.exe" />
+      <option name="SDK_HOME" value="D:\Logiciel\anaconda3\envs\MineRL\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mainm.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -87,9 +117,14 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.Mainm" />
+      <item itemvalue="Python.Main" />
+      <item itemvalue="Python.Instances" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Mainm" />
+        <item itemvalue="Python.Instances" />
         <item itemvalue="Python.Main" />
       </list>
     </recent_temporary>
@@ -102,6 +137,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648663169137</updated>
+      <workItem from="1648933274527" duration="38000" />
+      <workItem from="1648933384134" duration="16000" />
     </task>
     <task id="LOCAL-00001" summary="Initialisation et début tri">
       <created>1648668071529</created>
@@ -117,7 +154,84 @@
       <option name="project" value="LOCAL" />
       <updated>1648669755222</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Algorithme de Johnson pour deux machines terminé">
+      <created>1648674913334</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1648674913335</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Ajout addition de termes pour réduire le problème à un problème à deux machines">
+      <created>1648677792039</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1648677792039</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Début méthode BB approchée (selon l'article)">
+      <created>1648766869612</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1648766869612</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Calcul makespan et début réorganisation">
+      <created>1648778439257</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1648778439257</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Calcul makespan et début prog dynamique">
+      <created>1648841543987</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1648841543987</updated>
+    </task>
+    <task id="LOCAL-00008" summary="commit fonctionnel sans triDynamique">
+      <created>1648841906864</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1648841906864</updated>
+    </task>
+    <task id="LOCAL-00009" summary="renvoie les solutions pour tous les k et identifie le meilleur makespan">
+      <created>1648847534842</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1648847534842</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Début tri dynamique,">
+      <created>1648851668219</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1648851668219</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Méthode exacte">
+      <created>1649353680859</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1649353680859</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Une instance et Palmer. Elements pour le branch and bound">
+      <created>1649450741621</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1649450741621</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Ajout de plot&#10;&#10;Mise en forme pour pouvoir faire plusieurs tests et des moyennes">
+      <created>1649583705883</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1649583705883</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,6 +248,17 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initialisation et début tri" />
     <MESSAGE value="tri insertion début" />
-    <option name="LAST_COMMIT_MESSAGE" value="tri insertion début" />
+    <MESSAGE value="Algorithme de Johnson pour deux machines terminé" />
+    <MESSAGE value="Ajout addition de termes pour réduire le problème à un problème à deux machines" />
+    <MESSAGE value="Début méthode BB approchée (selon l'article)" />
+    <MESSAGE value="Calcul makespan et début réorganisation" />
+    <MESSAGE value="Calcul makespan et début prog dynamique" />
+    <MESSAGE value="commit fonctionnel sans triDynamique" />
+    <MESSAGE value="renvoie les solutions pour tous les k et identifie le meilleur makespan" />
+    <MESSAGE value="Début tri dynamique," />
+    <MESSAGE value="Méthode exacte" />
+    <MESSAGE value="Une instance et Palmer. Elements pour le branch and bound" />
+    <MESSAGE value="Ajout de plot&#10;&#10;Mise en forme pour pouvoir faire plusieurs tests et des moyennes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de plot&#10;&#10;Mise en forme pour pouvoir faire plusieurs tests et des moyennes" />
   </component>
 </project>
