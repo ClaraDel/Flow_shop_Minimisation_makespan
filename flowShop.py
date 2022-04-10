@@ -9,7 +9,7 @@ class Flowshop:
         self.nb_machines = nb_machines
         self.nb_jobs = nb_jobs
         self.jobs = self.randFlowshop(t_max_random)
-        # self.jobs = inst.A
+        #self.jobs = inst.A
         #self.makespans = []
         print("--- Initialisation d'un problème d'ordonnancement avec ", self.nb_jobs, "tâches et ", self.nb_machines, "machines ---")
 

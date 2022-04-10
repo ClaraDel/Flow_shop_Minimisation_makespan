@@ -79,21 +79,32 @@ def flowshopFct(nb_jobs, nb_machines, t_max_random, iter):
     # = [sum(erreursNEH)/iter, sum(erreursCDS)/iter, sum(erreursPalmer)/iter]
     return makespanData, dataTime#, erreurData
 
-def main():
-    for j in [10, 50, 100]:
-        makespans = [[10, 20, 50]]
-        times = [[10, 20, 50]]
-        for m in [10, 20, 50]:
-            print("Pour", j, "tâches et", m, "machines :")
-            [makespan, time] = flowshopFct(j, m, 50, 1)
-            # [makespan, time, erreur] = flowshopFct(j, m, 50, 1)
-            makespans.append(makespan)
-            times.append(time)
-        titremakespans = 'Moyenne des différents makespans pour '+str(j)+' tâches'
-        titreTemps = 'Moyenne des différents temps pour ' +str(j)+ ' tâches'
+# def main():
+#     for j in [10, 50, 100]:
+#         makespans = [[10, 20, 50]]
+#         times = [[10, 20, 50]]
+#         for m in [10, 20, 50]:
+#             print("Pour", j, "tâches et", m, "machines :")
+#             [makespan, time] = flowshopFct(j, m, 50, 1)
+#             # [makespan, time, erreur] = flowshopFct(j, m, 50, 1)
+#             makespans.append(makespan)
+#             times.append(time)
+#         titremakespans = 'Moyenne des différents makespans pour '+str(j)+' tâches'
+#         titreTemps = 'Moyenne des différents temps pour ' +str(j)+ ' tâches'
+#
+#         graphique(titremakespans, makespans)
+#         graphique(titreTemps, times)
+#         # print(erreur)
 
-        graphique(titremakespans, makespans)
-        graphique(titreTemps, times)
-        # print(erreur)
+def main():
+    print("Bienvenue sur notre application qui implémente différentes méthodes de résolution du problème d'ordonnancement flow shop !")
+    print("--- initialisation du problème ---")
+    print("--- combien de machine voulez vous avoir ? ---")
+    nbMachine = int(input())
+    print("--- combien de tâches voulez vous avoir ? ---")
+    nTâche = int(input())
+    print("--- quel temps maximal pour les opérations voulez vous imposer ? ---")
+    op = int(input())
+    flowshopFct(nTâche, nbMachine, op, 1)
 
 main()
