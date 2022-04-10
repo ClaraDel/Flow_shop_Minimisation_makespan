@@ -86,6 +86,7 @@ def main():
         for m in [10, 20, 50]:
             print("Pour", j, "tâches et", m, "machines :")
             [makespan, time] = flowshopFct(j, m, 50, 1)
+            # [makespan, time, erreur] = flowshopFct(j, m, 50, 1)
             makespans.append(makespan)
             times.append(time)
         titremakespans = 'Moyenne des différents makespans pour '+str(j)+' tâches'
