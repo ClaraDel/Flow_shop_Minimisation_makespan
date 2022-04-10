@@ -1,7 +1,5 @@
 import random
-#from numpy import copy
 import itertools as it
-import time as t
 import Instances as inst
 from LongestPathGraph import *
 
@@ -11,8 +9,8 @@ class Flowshop:
         self.nb_machines = nb_machines
         self.nb_jobs = nb_jobs
         self.jobs = self.randFlowshop(t_max_random)
-        #self.jobs = inst.B
-        self.makespans = []
+        # self.jobs = inst.A
+        #self.makespans = []
         print("--- Initialisation d'un problème d'ordonnancement avec ", self.nb_jobs, "tâches et ", self.nb_machines, "machines ---")
 
     def __int__(self, stringFile):
@@ -43,6 +41,7 @@ class Flowshop:
                     jobsSum.append([self.jobs[i][0], sum(fList), sum(lList)])
                 # on récupère la liste des tâches triée dans l'odre de l'algorithme de Johnson
                 jobsOrdered = self.Johnson(jobs=jobsSum)
+                # on l'affiche dans la console
                 # self.printJobOrder(jobsOrdered)
                 # on calculz le makespan pour cet ordre précis
                 makespan = self.makespanGraph(jobsOrdered, self.nb_jobs - 1)
@@ -55,6 +54,7 @@ class Flowshop:
                 # print("Makespan de la solution avec k =", k, ":", self.makespans[-1])
             # on print la solution finale
             self.printSolution(indiceMin, makespanMin, orderMin)
+            return orderMin, makespanMin
 
     def getMinMakespan(self, makespans):
         temp = makespans[0]
@@ -69,7 +69,8 @@ class Flowshop:
         print("La meilleur solution retenue est l'ordre ", end=' ')
         for i in range(self.nb_jobs):
             print(orderMin[i][0], end=' ')
-        print("avec k =", indiceMin + 1, "avec un makespan =", makespanMin)
+        print()
+        print("Avec k =", indiceMin + 1, "et un makespan =", makespanMin)
 
     def Johnson(self, jobs):
         U = []
@@ -111,17 +112,18 @@ class Flowshop:
     def JohnsonOuCDS(self):
         if self.nb_machines >= 3:
             print("\nDébut de la méthode Dudek Smith")
-            self.CDS()
+            result = self.CDS()
         else:
             print("\nDébut de la méthode Johnson")
-            self.Johnson()
-
+            order = self.Johnson()
+            result = self.printSolution(1, self.makespan(order, self.nb_jobs - 1, self.nb_machines), order)
+        return result
     def makespan(self, order, i, m):
-        # self.jobs[tab[i][0]][1:]
-        if i == 0 and m == 1:
-            t = self.jobs[order[i][0]][1]
-        elif i == 0:
-            t = self.jobs[order[i][0]][m] + self.makespan(order, 0, m - 1)
+        if i == 0:
+            if m == 0:
+                t = self.jobs[order[i][0]][1]
+            else:
+                t = self.jobs[order[i][0]][m] + self.makespan(order, 0, m - 1)
         elif m == 1:
             t = self.jobs[order[i][0]][m] + self.makespan(order, i - 1, 1)
         else:
@@ -186,6 +188,7 @@ class Flowshop:
         for i in range(self.nb_jobs):
             print(meilleurOrdre[i][0], end=' ')
         print()
+        return minMakespan
 
     def iterTriDynamique(self):
         order = []
@@ -200,7 +203,6 @@ class Flowshop:
                 temp = [j + 1].append(compList[0])
                 compList[0] = temp
                 # call self.calcVirtualTemp
-
 
     def calcVirtualTemp(self, tab, virt, k, i):
         b = tab[k][i - 1]
@@ -247,6 +249,7 @@ class Flowshop:
                     makespanMin = makespan
 
             currentSequece = bestSeqJobs
+            # print("la meilleur séquence retenue est", currentSequece)
         makespanFinal = self.makespanGraph(currentSequece, len(currentSequece) - 1)
         #makespanFinal = self.makespanCompare(currentSequece, len(seqJobsenCours) - 1)
         return currentSequece, makespanFinal
@@ -290,6 +293,12 @@ class Flowshop:
             f = 0
             for m in range(1, self.nb_machines + 1):
                 f = f + (self.nb_machines - 2 * m + 1) * self.jobs[j][m]
-            ordre.append(f)
-            ordre = self.tri_insertion(ordre)
+            ordre.append([j, f])
+        for i in range(len(ordre)):
+            temp = ordre[i]
+            j = i
+            while j > 0 and ordre[j - 1][1] > temp[1]:
+                ordre[j] = ordre[j - 1]
+                j = j - 1
+            ordre[j] = temp
         return ordre

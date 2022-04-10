@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="Méthode exacte">
-      <change afterPath="$PROJECT_DIR$/Instances.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/betb.py" afterDir="false" />
+    <list default="true" id="96ff77a6-cd09-43df-bdc0-36798d9900f0" name="Changes" comment="Une instance et Palmer. Elements pour le branch and bound">
+      <change afterPath="$PROJECT_DIR$/generationGraphe.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Mainm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mainm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flowShop.py" beforeDir="false" afterPath="$PROJECT_DIR$/flowShop.py" afterDir="false" />
@@ -220,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649353680859</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Une instance et Palmer. Elements pour le branch and bound">
+      <created>1649450741621</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1649450741621</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -246,6 +252,7 @@
     <MESSAGE value="renvoie les solutions pour tous les k et identifie le meilleur makespan" />
     <MESSAGE value="Début tri dynamique," />
     <MESSAGE value="Méthode exacte" />
-    <option name="LAST_COMMIT_MESSAGE" value="Méthode exacte" />
+    <MESSAGE value="Une instance et Palmer. Elements pour le branch and bound" />
+    <option name="LAST_COMMIT_MESSAGE" value="Une instance et Palmer. Elements pour le branch and bound" />
   </component>
 </project>
