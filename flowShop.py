@@ -167,7 +167,7 @@ class Flowshop:
         #tri dans l'ordre topologique :
         graph.triTopologique(self.nb_machines, nbJobs+1)
         #on récupère le chemin le plus grand :
-        graph.shortestPath(firstNode)
+        graph.findShortestPath(firstNode)
         makespan = graph.setMakespan(lastWeight)
         return makespan
 

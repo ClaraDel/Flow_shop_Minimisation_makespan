@@ -29,7 +29,7 @@ class Graph:
                 self.stack.append(j*nb_machines+i)
         #print("stack =", self.stack)
 
-    def shortestPath(self, s):
+    def findShortestPath(self, s):
 
         # Mark all the vertices as not visited
         visited = [False] * self.V
