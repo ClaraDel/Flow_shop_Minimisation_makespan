@@ -2,9 +2,9 @@ from collections import defaultdict
 
 #le graphe possède une liste de tous les noeuds qui ont des noeuds adjacents, et ce avec la distance avec ces derniers
 class Graph:
-    def __init__(self, vertices):
+    def __init__(self, nbV):
         #nombre de noeuds que contient le graphe
-        self.V = vertices
+        self.V = nbV
 
         # liste de : id du noeuds puis ses voisins avce la distance
         self.graph = defaultdict(list)
@@ -29,7 +29,7 @@ class Graph:
                 self.stack.append(j*nb_machines+i)
         #print("stack =", self.stack)
 
-    def shortestPath(self, s):
+    def findShortestPath(self, s):
 
         # Mark all the vertices as not visited
         visited = [False] * self.V
