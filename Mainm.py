@@ -90,10 +90,10 @@ def main():
             makespans.append(makespan)
             times.append(time)
         titremakespans = 'Moyenne des différents makespans pour '+str(j)+' tâches'
-        titreTemps = 'Moyenne des différents temps pour' +str(j)+ 'tâches'
+        titreTemps = 'Moyenne des différents temps pour ' +str(j)+ ' tâches'
 
         graphique(titremakespans, makespans)
-        graphique(titremakespans, times)
+        graphique(titreTemps, times)
         # print(erreur)
 
 main()
